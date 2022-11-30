@@ -84,7 +84,4 @@ mssql:
   pid: "Express"
   timezone: "Asia/Singapore"
 
-sqlpad:
-  storageSize: "1Gi"
-  admin: "admin@sqlpad.com"
-  adminPassword: "admin"
+openshift: true
