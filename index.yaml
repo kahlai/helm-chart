@@ -8,6 +8,7 @@ entries:
     digest: 35b76921ec15184e8c4f63683f6afad88d2bf807d219ccd1e3df5ea6ea795d3e
     name: mssql
     type: application
+    icon: https://raw.githubusercontent.com/kahlai/helm-chart/master/helm-chart-sources/mssql/sql.svg
     annotations:
       category: Database
     keywords:
@@ -16,7 +17,6 @@ entries:
     - microsoft
     urls:
     - https://kahlai.github.io/helm-chart/mssql-0.1.0.tgz
-    - https://kahlai.github.io/helm-chart/sqlpad-0.1.0.tgz
     version: 0.1.0
   sqlpad:
   - apiVersion: v2
