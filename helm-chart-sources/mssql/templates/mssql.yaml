@@ -48,8 +48,8 @@ spec:
   volumeClaimTemplates:
   - metadata:
       name: {{ include "mssql.fullname" . }}
-    labels:
-      {{- include "mssql.labels" . | nindent 6 }}
+      labels:
+      {{- include "mssql.labels" . | nindent 8 }}
     spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
