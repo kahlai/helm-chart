@@ -4,7 +4,7 @@ entries:
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2022-11-29T19:38:14.854462+08:00"
-    description: A Helm chart for Kubernetes
+    description: A Helm chart to deploy MSSQL Database
     digest: 35b76921ec15184e8c4f63683f6afad88d2bf807d219ccd1e3df5ea6ea795d3e
     name: mssql
     type: application
@@ -22,7 +22,7 @@ entries:
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2022-11-29T19:38:14.854462+08:00"
-    description: A Helm chart for Kubernetes
+    description: A Helm chart to deploy Sqlpad
     digest: 35b76921ec15184e8c4f63683f6afad88d2bf807d219ccd1e3df5ea6ea795d3e
     name: sqlpad
     type: application

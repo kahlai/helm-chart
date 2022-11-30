@@ -18,6 +18,11 @@
             "storageSize": "2Gi",
             "timezone": "Asia/Singapore"
         },
+        "sqlpad": {
+            "storageSize": "2Gi",
+            "admin": "admin@sqlpad.com",
+            "adminPassword": "admin"
+        },
         "ingress": {
             "className": "",
             "annotations": {},
@@ -76,14 +81,6 @@
                         "IfNotPresent"
                     ]
                 },
-                "repository": {
-                    "type": "string",
-                    "default": "quay.io/kahlai/mssql",
-                    "title": "Repository",
-                    "examples": [
-                        "quay.io/kahlai/mssql"
-                    ]
-                },
                 "tag": {
                     "type": "string",
                     "default": "latest",
@@ -111,7 +108,7 @@
             "default": {},
             "title": "Mssql pod configuration",
             "required": [
-                "saPassword",
+                "adminPassword",
                 "pid",
                 "timezone",
                 "acceptEula",
@@ -162,10 +159,51 @@
                 }
             },
             "examples": [{
-                "saPassword": "M$$sqlPassword",
+                "adminPassword": "M$$sqlPassword",
                 "pid": "Express",
                 "acceptEula": "Y",
                 "timezone": "Asia/Singapore"
+            }]
+        },
+        "sqlpad": {
+            "type": "object",
+            "default": {},
+            "title": "Sqlpad Configuration",
+            "required": [
+                "storageSize",
+                "password"
+            ],
+            "properties": {
+                "storageSize": {
+                    "type": "string",
+                    "default": "",
+                    "title": "PVC size",
+                    "examples": [
+                        "2Gi"
+                    ]
+                },
+                "admin": {
+                    "type": "string",
+                    "default": "",
+                    "title": "Sqlpad User",
+                    "examples": [
+                        "admin@sqlpad.com"
+                    ]
+                },
+                "adminPassword": {
+                    "type": "string",
+                    "default": "",
+                    "title": "Sqlpad user Password",
+                    "examples": [
+                        "admin"
+                    ]
+                }
+
+            },
+            "examples": [{
+                "storageSize": "2Gi",
+                "admin": "admin@sqlpad.com",
+                "adminPassword": "admin"
             }]
         },
         "ingress": {
@@ -256,6 +294,11 @@
             "pid": "Express",
             "storageSize": "2Gi",
             "timezone": "Asia/Singapore"
+        },
+        "sqlpad": {
+            "storageSize": "2Gi",
+            "admin": "admin@sqlpad.com",
+            "adminPassword": "admin"
         },
         "ingress": {
             "className": "",
