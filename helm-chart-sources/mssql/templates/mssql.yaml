@@ -44,10 +44,10 @@ spec:
             - containerPort: 1443
           volumeMounts:
           - mountPath: /var/opt/mssql/data
-            name: mssqldata
+            name: {{ include "mssql.fullname" . }}-data
   volumeClaimTemplates:
   - metadata:
-      name: {{ include "mssql.fullname" . }}
+      name: {{ include "mssql.fullname" . }}-data
       labels:
       {{- include "mssql.labels" . | nindent 8 }}
     spec:
