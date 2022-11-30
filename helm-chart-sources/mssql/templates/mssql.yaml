@@ -49,7 +49,7 @@ spec:
   - metadata:
       name: {{ include "mssql.fullname" . }}
     labels:
-      {{- include "mssql.labels" . | nindent 4 }}
+      {{- include "mssql.labels" . | nindent 6 }}
     spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
