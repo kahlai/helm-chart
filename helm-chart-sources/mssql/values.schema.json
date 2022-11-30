@@ -1,0 +1,313 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {
+        "openshift": true,
+        "image": {
+            "pullPolicy": "IfNotPresent",
+            "tag": "latest"
+        },
+        "nameOverride": "",
+        "fullnameOverride": "",
+        "podAnnotations": {},
+        "mssql": {
+            "acceptEula": "Y",
+            "saPassword": "M$$sqlPassword",
+            "pid": "Express",
+            "storageSize": "2Gi",
+            "timezone": "Asia/Singapore"
+        },
+        "sqlpad": {
+            "storageSize": "2Gi",
+            "admin": "admin@sqlpad.com",
+            "adminPassword": "admin"
+        },
+        "ingress": {
+            "className": "",
+            "annotations": {},
+            "host": ""
+        },
+        "resources": {},
+        "nodeSelector": {},
+        "tolerations": [],
+        "affinity": {}
+    },
+    "title": "Values",
+    "required": [
+        "openshift",
+        "image",
+        "mssql",
+        "sqlpad"
+    ],
+    "properties": {
+        "nameOverride": {
+            "type": "string",
+            "default": "",
+            "title": "Override chart name",
+            "examples": [
+                ""
+            ]
+        },
+        "fullnameOverride": {
+            "type": "string",
+            "default": "",
+            "title": "Override fully-qualified chart name",
+            "examples": [
+                ""
+            ]
+        },
+        "openshift": {
+            "type": "boolean",
+            "default": false,
+            "title": "Set to true if deploying on OpenShift",
+            "examples": [
+                true
+            ]
+        },
+        "image": {
+            "type": "object",
+            "default": {},
+            "title": "The image Schema",
+            "required": [
+                "pullPolicy"
+            ],
+            "properties": {
+                "pullPolicy": {
+                    "type": "string",
+                    "default": "",
+                    "title": "imagePullPolicy",
+                    "examples": [
+                        "IfNotPresent"
+                    ]
+                },
+                "tag": {
+                    "type": "string",
+                    "default": "latest",
+                    "title": "The tag Schema",
+                    "examples": [
+                        "latest"
+                    ]
+                }
+            },
+            "examples": [{
+                "pullPolicy": "IfNotPresent",
+                "tag": ""
+            }]
+        },
+        "podAnnotations": {
+            "type": "object",
+            "default": {},
+            "title": "Pod Annotations",
+            "required": [],
+            "properties": {},
+            "examples": [{}]
+        },
+        "mssql": {
+            "type": "object",
+            "default": {},
+            "title": "Mssql pod configuration",
+            "required": [
+                "adminPassword",
+                "pid",
+                "timezone",
+                "acceptEula",
+                "storageSize"
+            ],
+            "properties": {
+                "saPassword": {
+                    "type": "string",
+                    "default": "M$$sqlPassword",
+                    "title": "Admin Password",
+                    "examples": [
+                        "M$$sqlPassword"
+                    ]
+                },
+                "pid": {
+                    "type": "string",
+                    "default": "Express",
+                    "title": "Mssql PID Version (Developer, Express...)",
+                    "examples": [
+                        "Developer",
+                        "Express"
+                    ]
+                },
+                "acceptEula": {
+                    "type": "string",
+                    "default": "Y",
+                    "title": "Accept EULA",
+                    "examples": [
+                        "Y",
+                        "N"
+                    ]
+                },
+                "storageSize": {
+                    "type": "string",
+                    "default": "",
+                    "title": "PVC size",
+                    "examples": [
+                        "2Gi"
+                    ]
+                },
+                "timezone": {
+                    "type": "string",
+                    "default": "",
+                    "title": "Time zone",
+                    "examples": [
+                        "Asia/Singapore"
+                    ]
+                }
+            },
+            "examples": [{
+                "adminPassword": "M$$sqlPassword",
+                "pid": "Express",
+                "acceptEula": "Y",
+                "timezone": "Asia/Singapore"
+            }]
+        },
+        "sqlpad": {
+            "type": "object",
+            "default": {},
+            "title": "Sqlpad Configuration",
+            "required": [
+                "storageSize",
+                "password"
+            ],
+            "properties": {
+                "storageSize": {
+                    "type": "string",
+                    "default": "",
+                    "title": "PVC size",
+                    "examples": [
+                        "2Gi"
+                    ]
+                },
+                "admin": {
+                    "type": "string",
+                    "default": "",
+                    "title": "Sqlpad User",
+                    "examples": [
+                        "admin@sqlpad.com"
+                    ]
+                },
+                "adminPassword": {
+                    "type": "string",
+                    "default": "",
+                    "title": "Sqlpad user Password",
+                    "examples": [
+                        "admin"
+                    ]
+                }
+
+            },
+            "examples": [{
+                "storageSize": "2Gi",
+                "admin": "admin@sqlpad.com",
+                "adminPassword": "admin"
+            }]
+        },
+        "ingress": {
+            "type": "object",
+            "default": {},
+            "title": "Ingress Configuration - required if deploying to non-OpenShift",
+            "required": [
+                "host"
+            ],
+            "properties": {
+                "className": {
+                    "type": "string",
+                    "default": "",
+                    "title": "Ingress Class Name",
+                    "examples": [
+                        ""
+                    ]
+                },
+                "annotations": {
+                    "type": "object",
+                    "default": {},
+                    "title": "Ingress Annotations",
+                    "required": [],
+                    "properties": {},
+                    "examples": [{}]
+                },
+                "host": {
+                    "type": "string",
+                    "default": "",
+                    "title": "Ingress hostname",
+                    "examples": [
+                        ""
+                    ]
+                }
+            },
+            "examples": [{
+                "className": "",
+                "annotations": {},
+                "host": ""
+            }]
+        },
+        "resources": {
+            "type": "object",
+            "default": {},
+            "title": "Pod Resources section",
+            "required": [],
+            "properties": {},
+            "examples": [{}]
+        },
+        "nodeSelector": {
+            "type": "object",
+            "default": {},
+            "title": "Pod Node Selector",
+            "required": [],
+            "properties": {},
+            "examples": [{}]
+        },
+        "tolerations": {
+            "type": "array",
+            "default": [],
+            "title": "Pod Tolerations",
+            "items": {},
+            "examples": [
+                []
+            ]
+        },
+        "affinity": {
+            "type": "object",
+            "default": {},
+            "title": "Pod Affinity",
+            "required": [],
+            "properties": {},
+            "examples": [{}]
+        }
+    },
+    "examples": [{
+        "openshift": true,
+        "image": {
+            "pullPolicy": "IfNotPresent",
+            "tag": "2022-RTM-rhel-8.5"
+        },
+        "nameOverride": "",
+        "fullnameOverride": "",
+        "podAnnotations": {},
+        "mssql": {
+            "acceptEula": "Y",
+            "saPassword": "M$$sqlPassword",
+            "pid": "Express",
+            "storageSize": "2Gi",
+            "timezone": "Asia/Singapore"
+        },
+        "sqlpad": {
+            "storageSize": "2Gi",
+            "admin": "admin@sqlpad.com",
+            "adminPassword": "admin"
+        },
+        "ingress": {
+            "className": "",
+            "annotations": {},
+            "host": ""
+        },
+        "resources": {},
+        "nodeSelector": {},
+        "tolerations": [],
+        "affinity": {}
+    }]
+}

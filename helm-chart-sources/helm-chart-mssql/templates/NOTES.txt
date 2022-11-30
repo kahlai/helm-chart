@@ -1,4 +1,0 @@
-Access the sqlpad at 
-{{ if .Values.openshift }}
-https://$(oc get -n {{ .Release.Namespace }} route/mssql -o jsonpath="{.spec.host}")
-{{ end }}
