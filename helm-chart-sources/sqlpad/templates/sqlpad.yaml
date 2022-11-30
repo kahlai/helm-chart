@@ -1,16 +1,17 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "sqlpad.fullname" . }}
   labels:
     {{- include "sqlpad.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
-  {{- end }}
+  serviceName: "mssqlpad"
   selector:
     matchLabels:
       {{- include "sqlpad.selectorLabels" . | nindent 6 }}
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -29,33 +30,26 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+          ports:
+            - containerPort: 35217
+          envFrom:
+          - secretRef:
+              name: {{ include "sqlpad.fullname" . }}
+      volumeMounts:
+        - mountPath: /var/lib/sqlpad/
+          name: {{ include "sqlpad.fullname" . }}-data
+      # serviceAccount: sa-with-anyuid
+    volumeClaimTemplates:
+    - metadata:
+        name: {{ include "sqlpad.fullname" . }}-data
+        labels:
+        {{- include "sqlpad.labels" . | nindent 12 }}
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: {{ .Values.sqlpad.storageSize }}

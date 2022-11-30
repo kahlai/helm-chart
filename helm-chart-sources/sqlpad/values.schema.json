@@ -11,17 +11,20 @@
         "nameOverride": "",
         "fullnameOverride": "",
         "podAnnotations": {},
-        "mssql": {
-            "acceptEula": "Y",
-            "saPassword": "M$$sqlPassword",
-            "pid": "Express",
-            "storageSize": "2Gi",
-            "timezone": "Asia/Singapore"
-        },
         "sqlpad": {
-            "storageSize": "2Gi",
+            "storageSize": "512Mi",
             "admin": "admin@sqlpad.com",
-            "adminPassword": "admin"
+            "password": "admin",
+            "logLevel": "info",
+            "connections": [{
+                "uid": "mssqldemo",
+                "name": "SQL Server Demo",
+                "driver": "sqlserver",
+                "host": "mssql",
+                "database": "master",
+                "username": "sa",
+                "password": "M$$sqlPassword"
+            }]
         },
         "ingress": {
             "className": "",
@@ -37,7 +40,6 @@
     "required": [
         "openshift",
         "image",
-        "mssql",
         "sqlpad"
     ],
     "properties": {
@@ -103,68 +105,6 @@
             "properties": {},
             "examples": [{}]
         },
-        "mssql": {
-            "type": "object",
-            "default": {},
-            "title": "Mssql pod configuration",
-            "required": [
-                "adminPassword",
-                "pid",
-                "timezone",
-                "acceptEula",
-                "storageSize"
-            ],
-            "properties": {
-                "saPassword": {
-                    "type": "string",
-                    "default": "M$$sqlPassword",
-                    "title": "Admin Password",
-                    "examples": [
-                        "M$$sqlPassword"
-                    ]
-                },
-                "pid": {
-                    "type": "string",
-                    "default": "Express",
-                    "title": "Mssql PID Version (Developer, Express...)",
-                    "examples": [
-                        "Developer",
-                        "Express"
-                    ]
-                },
-                "acceptEula": {
-                    "type": "string",
-                    "default": "Y",
-                    "title": "Accept EULA",
-                    "examples": [
-                        "Y",
-                        "N"
-                    ]
-                },
-                "storageSize": {
-                    "type": "string",
-                    "default": "",
-                    "title": "PVC size",
-                    "examples": [
-                        "2Gi"
-                    ]
-                },
-                "timezone": {
-                    "type": "string",
-                    "default": "",
-                    "title": "Time zone",
-                    "examples": [
-                        "Asia/Singapore"
-                    ]
-                }
-            },
-            "examples": [{
-                "adminPassword": "M$$sqlPassword",
-                "pid": "Express",
-                "acceptEula": "Y",
-                "timezone": "Asia/Singapore"
-            }]
-        },
         "sqlpad": {
             "type": "object",
             "default": {},
@@ -190,20 +130,40 @@
                         "admin@sqlpad.com"
                     ]
                 },
-                "adminPassword": {
+                "password": {
                     "type": "string",
                     "default": "",
                     "title": "Sqlpad user Password",
                     "examples": [
                         "admin"
                     ]
+                },
+                "logLevel": {
+                    "type": "string",
+                    "default": "info",
+                    "title": "Log Level",
+                    "examples": [
+                        "debug",
+                        "info"
+                    ]
                 }
+
 
             },
             "examples": [{
-                "storageSize": "2Gi",
+                "storageSize": "512Mi",
                 "admin": "admin@sqlpad.com",
-                "adminPassword": "admin"
+                "password": "admin",
+                "logLevel": "info",
+                "connections": [{
+                    "uid": "mssqldemo",
+                    "name": "SQL Server Demo",
+                    "driver": "sqlserver",
+                    "host": "mssql",
+                    "database": "master",
+                    "username": "sa",
+                    "password": "M$$sqlPassword"
+                }]
             }]
         },
         "ingress": {
@@ -283,22 +243,25 @@
         "openshift": true,
         "image": {
             "pullPolicy": "IfNotPresent",
-            "tag": "2022-RTM-rhel-8.5"
+            "tag": "6.11.3"
         },
         "nameOverride": "",
         "fullnameOverride": "",
         "podAnnotations": {},
-        "mssql": {
-            "acceptEula": "Y",
-            "saPassword": "M$$sqlPassword",
-            "pid": "Express",
-            "storageSize": "2Gi",
-            "timezone": "Asia/Singapore"
-        },
         "sqlpad": {
-            "storageSize": "2Gi",
+            "storageSize": "512Mi",
             "admin": "admin@sqlpad.com",
-            "adminPassword": "admin"
+            "password": "admin",
+            "logLevel": "info",
+            "connections": [{
+                "uid": "mssqldemo",
+                "name": "SQL Server Demo",
+                "driver": "sqlserver",
+                "host": "mssql",
+                "database": "master",
+                "username": "sa",
+                "password": "M$$sqlPassword"
+            }]
         },
         "ingress": {
             "className": "",

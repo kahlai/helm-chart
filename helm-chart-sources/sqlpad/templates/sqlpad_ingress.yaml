@@ -1,3 +1,23 @@
+{{ if .Values.openshift }}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    {{- include "sqlpad.labels" . | nindent 4 }}
+  name: {{ include "sqlpad.fullname" . }}
+spec:
+  port:
+    targetPort: 3000
+  to:
+    kind: Service
+    name: {{ include "sqlpad.fullname" . }}
+    weight: 100
+  wildcardPolicy: None
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Allow
+{{ else }}
+
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "sqlpad.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
@@ -59,3 +79,4 @@ spec:
           {{- end }}
     {{- end }}
 {{- end }}
+{{ end }}
