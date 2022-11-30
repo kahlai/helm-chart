@@ -8,12 +8,27 @@ entries:
     digest: 35b76921ec15184e8c4f63683f6afad88d2bf807d219ccd1e3df5ea6ea795d3e
     name: mssql
     type: application
+    annotations:
+      category: Database
     keywords:
     - database
     - mssql
     - microsoft
     urls:
     - https://kahlai.github.io/helm-chart/mssql-0.1.0.tgz
+    - https://kahlai.github.io/helm-chart/sqlpad-0.1.0.tgz
+    version: 0.1.0
+  sqlpad:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-11-29T19:38:14.854462+08:00"
+    description: A Helm chart for Kubernetes
+    digest: 35b76921ec15184e8c4f63683f6afad88d2bf807d219ccd1e3df5ea6ea795d3e
+    name: sqlpad
+    type: application
+    annotations:
+      category: Tools
+    urls:
     - https://kahlai.github.io/helm-chart/sqlpad-0.1.0.tgz
     version: 0.1.0
 generated: "2022-11-29T19:38:14.853506+08:00"
