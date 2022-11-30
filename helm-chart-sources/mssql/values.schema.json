@@ -32,8 +32,7 @@
     "required": [
         "openshift",
         "image",
-        "mssql",
-        "sqlpad"
+        "mssql"
     ],
     "properties": {
         "nameOverride": {
