@@ -18,6 +18,11 @@ entries:
     urls:
     - https://kahlai.github.io/helm-chart/mssql-0.1.0.tgz
     version: 0.1.0
+    maintainers:
+    - name: kahlai
+      url: https://kahlai.github.io/helm-chart/
+    sources:
+    - https://github.com/kahlai/helm-chart/tree/master/helm-chart-sources/mssql
   sqlpad:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -31,4 +36,9 @@ entries:
     urls:
     - https://kahlai.github.io/helm-chart/sqlpad-0.1.0.tgz
     version: 0.1.0
+    maintainers:
+    - name: kahlai
+      url: https://kahlai.github.io/helm-chart/
+    sources:
+    - https://github.com/kahlai/helm-chart/tree/master/helm-chart-sources/sqlpad
 generated: "2022-11-29T19:38:14.853506+08:00"
