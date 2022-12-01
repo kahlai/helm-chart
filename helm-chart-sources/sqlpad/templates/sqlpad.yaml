@@ -42,12 +42,11 @@ spec:
       volumeMounts:
         - mountPath: /var/lib/sqlpad/
           name: {{ include "sqlpad.fullname" . }}-data
-      # serviceAccount: sa-with-anyuid
     volumeClaimTemplates:
     - metadata:
         name: {{ include "sqlpad.fullname" . }}-data
         labels:
-        {{- include "sqlpad.labels" . | nindent 12 }}
+        {{- include "sqlpad.labels" . | nindent 10 }}
       spec:
         accessModes: [ "ReadWriteOnce" ]
         resources:
