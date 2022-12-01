@@ -39,16 +39,16 @@ spec:
           envFrom:
           - secretRef:
               name: {{ include "sqlpad.fullname" . }}
-      volumeMounts:
-        - mountPath: /var/lib/sqlpad/
-          name: {{ include "sqlpad.fullname" . }}-data
-    volumeClaimTemplates:
-    - metadata:
-        name: {{ include "sqlpad.fullname" . }}-data
-        labels:
-        {{- include "sqlpad.labels" . | nindent 10 }}
-      spec:
-        accessModes: [ "ReadWriteOnce" ]
-        resources:
-          requests:
-            storage: {{ .Values.sqlpad.storageSize }}
+          volumeMounts:
+          - mountPath: /var/lib/sqlpad/
+            name: {{ include "sqlpad.fullname" . }}-data
+  volumeClaimTemplates:
+  - metadata:
+      name: {{ include "sqlpad.fullname" . }}-data
+      labels:
+        {{- include "sqlpad.labels" . | nindent 8 }}
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: {{ .Values.sqlpad.storageSize }}
