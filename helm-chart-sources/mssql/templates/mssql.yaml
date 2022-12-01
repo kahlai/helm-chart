@@ -25,7 +25,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "mssql.serviceAccountName" . }}
+      serviceAccountName: {{ include "mssql.fullname" . }}-sa
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
