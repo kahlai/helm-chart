@@ -41,7 +41,7 @@ spec:
           - secretRef:
               name: {{ include "mssql.fullname" . }}
           ports:
-            - containerPort: 1443
+            - containerPort: 1433
           volumeMounts:
           - mountPath: /var/opt/mssql/data
             name: {{ include "mssql.fullname" . }}-data
