@@ -39,7 +39,7 @@ securityContext:
 
 service:
   type: ClusterIP
-  port: 1443
+  port: 1433
 
 ingress:
   enabled: false
