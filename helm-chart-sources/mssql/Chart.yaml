@@ -1,6 +1,8 @@
 apiVersion: v2
 name: mssql
 description: A Helm chart for Kubernetes
+annotations:
+  catagory: Database
 
 # A chart can be either an 'application' or a 'library' chart.
 #
